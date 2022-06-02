@@ -1,0 +1,40 @@
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  annotations:
+    openshift.io/generated-by: OpenShiftNewBuild
+    ref: main
+  name: onderhoud-prd
+
+  namespace: hetarchief
+  labels:
+    ref: main
+spec:
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'onderhoud:prd'
+  resources: {}
+  successfulBuildsHistoryLimit: 5
+  failedBuildsHistoryLimit: 5
+  strategy:
+    type: Docker
+    dockerStrategy:
+      env:
+        - name: MAINTENANCE
+          value: 'true'
+      buildArgs:
+        - name: MAINTENANCE
+          value: 'true'
+  postCommit: {}
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/viaacode/hetarchief-onderhoud.git'
+      ref: main
+    contextDir: /
+
+  runPolicy: Serial
+status:
+  lastVersion: 86
