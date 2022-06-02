@@ -12,7 +12,7 @@ metadata:
 spec:
   ports:
   - name: 8080-tcp
-    port: 3000
+    port: 8080
     protocol: TCP
     targetPort: 3000
   selector:
