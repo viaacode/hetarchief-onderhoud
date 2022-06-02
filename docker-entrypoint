@@ -1,0 +1,10 @@
+#!/bin/bash
+## default to error page if MAINTENANCE is unset or false
+set -ex
+case $MAINTENANCE in
+  true) echo maintenance is set ; nginx -g 'daemon off;';;
+  false) echo maintenance not set ;mv .maintenance .error && nginx -g 'daemon off;';;
+
+  "")  echo  maintenance is not set; mv .maintenance .error && nginx -g 'daemon off;';;
+  *) echo  maintenance is not set; mv .maintenance .error && nginx -g 'daemon off;';;
+esac

@@ -1,0 +1,8 @@
+.DS_Store
+node_modules
+.vscode
+dist/*
+!dist/maintenance.html
+!dist/error.html
+# Parcel
+.cache
